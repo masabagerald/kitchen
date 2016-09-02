@@ -1,0 +1,38 @@
+{% extends 'kitchenup/base.html' %}
+{% load staticfiles %}
+
+{% block title %}  {{ category_name }}{% endblock %}
+{% block body_block %}
+
+        <h1>Add Food to {{ category.name }}</h1>
+
+        <form id="food_form" method="post" action=".">
+
+            {% csrf_token %}
+
+
+
+
+            {% if category %}
+
+
+                {% for field in form %}
+
+                    {{ field.errors }}
+                    {{ field.help_text }}
+                    {{ field }}
+
+                {% endfor %}
+
+
+            {% else %}
+
+                 A category by this name does not exist
+
+            {% endif %}
+
+
+            <input type="submit" class="btn btn-primary" name="submit" value="Add food" />
+        </form>
+
+{% endblock %}
